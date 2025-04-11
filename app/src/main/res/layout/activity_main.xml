@@ -44,6 +44,20 @@
             android:text="复制链接"
             android:padding="16dp" />
 
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#CCCCCC"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="16dp" />
+
+        <Button
+            android:id="@+id/btnOpenFileShare"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="高级文件分享"
+            android:padding="16dp" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

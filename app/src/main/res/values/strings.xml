@@ -1,3 +1,20 @@
 <resources>
     <string name="app_name">Quick Pass</string>
+    
+    <!-- 文件分享页面 -->
+    <string name="select_files">选择文件</string>
+    <string name="selected_files">已选择的文件</string>
+    <string name="available_devices">内网可用设备</string>
+    <string name="scan_devices">扫描设备</string>
+    <string name="scanning">扫描中…</string>
+    <string name="send">发送</string>
+    <string name="no_devices_found">未发现设备</string>
+    <string name="devices_found">发现 %1$d 台设备</string>
+    <string name="no_files_selected">请先选择要分享的文件</string>
+    <string name="sending_files">正在将文件发送到 %1$s</string>
+    <string name="share_file">分享文件</string>
+    <string name="share_link">分享链接</string>
+    <string name="copy_link">复制链接</string>
+    <string name="link_copied">链接已复制到剪贴板</string>
+    <string name="advanced_file_share">高级文件分享</string>
 </resources>

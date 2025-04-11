@@ -35,6 +35,8 @@ dependencies {
     implementation libs.activity
     implementation libs.constraintlayout
     implementation libs.androidasync
+    implementation libs.zxing.core
+    implementation libs.zxing.embedded
     testImplementation libs.junit
     androidTestImplementation libs.ext.junit
     androidTestImplementation libs.espresso.core
