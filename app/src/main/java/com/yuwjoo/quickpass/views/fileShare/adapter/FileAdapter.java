@@ -1,4 +1,4 @@
-package com.yuwjoo.quickpass.adapter;
+package com.yuwjoo.quickpass.views.fileShare.adapter;
 
 import android.app.AlertDialog;
 import android.content.ClipData;
@@ -25,8 +25,8 @@ import com.google.zxing.WriterException;
 import com.google.zxing.common.BitMatrix;
 import com.journeyapps.barcodescanner.BarcodeEncoder;
 import com.yuwjoo.quickpass.R;
-import com.yuwjoo.quickpass.model.FileItem;
-import com.yuwjoo.quickpass.server.FileShareHttpServer;
+import com.yuwjoo.quickpass.views.fileShare.model.FileItem;
+import com.yuwjoo.quickpass.httpServer.FileShareHttpServer;
 
 import java.util.List;
 

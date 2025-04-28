@@ -1,4 +1,4 @@
-package com.yuwjoo.quickpass.server;
+package com.yuwjoo.quickpass.httpServer;
 
 import android.content.Context;
 import android.database.Cursor;

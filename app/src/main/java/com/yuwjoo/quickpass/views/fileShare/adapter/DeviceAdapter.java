@@ -1,4 +1,4 @@
-package com.yuwjoo.quickpass.adapter;
+package com.yuwjoo.quickpass.views.fileShare.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;

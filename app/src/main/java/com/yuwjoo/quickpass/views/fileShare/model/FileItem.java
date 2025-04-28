@@ -1,4 +1,4 @@
-package com.yuwjoo.quickpass.model;
+package com.yuwjoo.quickpass.views.fileShare.model;
 
 import android.net.Uri;
 

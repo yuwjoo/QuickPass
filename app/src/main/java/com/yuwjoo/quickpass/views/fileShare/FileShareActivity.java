@@ -1,11 +1,10 @@
-package com.yuwjoo.quickpass;
+package com.yuwjoo.quickpass.views.fileShare;
 
 import android.content.Intent;
 import android.database.Cursor;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.OpenableColumns;
-import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
@@ -17,19 +16,16 @@ import androidx.core.view.WindowInsetsCompat;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.yuwjoo.quickpass.adapter.DeviceAdapter;
-import com.yuwjoo.quickpass.adapter.FileAdapter;
-import com.yuwjoo.quickpass.model.FileItem;
-import com.yuwjoo.quickpass.server.DeviceScanner;
-import com.yuwjoo.quickpass.server.FileShareHttpServer;
+import com.yuwjoo.quickpass.R;
+import com.yuwjoo.quickpass.views.fileShare.adapter.DeviceAdapter;
+import com.yuwjoo.quickpass.views.fileShare.adapter.FileAdapter;
+import com.yuwjoo.quickpass.views.fileShare.model.FileItem;
+import com.yuwjoo.quickpass.httpServer.DeviceScanner;
+import com.yuwjoo.quickpass.httpServer.FileShareHttpServer;
 
 import java.util.ArrayList;
 import java.util.List;
 
-/**
- * 文件分享活动类
- * 用于实现文件选择、列表展示、设备扫描和文件分享功能
- */
 public class FileShareActivity extends AppCompatActivity implements FileAdapter.OnFileRemovedListener, DeviceAdapter.OnDeviceClickListener {
 
     private static final int REQUEST_CODE_PICK_FILE = 1001;
@@ -69,20 +65,21 @@ public class FileShareActivity extends AppCompatActivity implements FileAdapter.
         fileShareHttpServer.start();
         deviceScanner = new DeviceScanner(this);
 
-        // 初始化视图
-        initViews();
+        initView();
+        initPresenter();
+
         setupRecyclerViews();
         setupListeners();
     }
 
-    /**
-     * 初始化视图组件
-     */
-    private void initViews() {
+    private void initView() {
         rvSelectedFiles = findViewById(R.id.rvSelectedFiles);
         rvDevices = findViewById(R.id.rvDevices);
         btnSelectFiles = findViewById(R.id.btnSelectFiles);
         btnScanDevices = findViewById(R.id.btnScanDevices);
+    }
+
+    private void initPresenter() {
     }
 
     /**
