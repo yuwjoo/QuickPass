@@ -10,6 +10,7 @@ constraintlayout = "2.1.4"
 androidasync = "3.1.0"
 zxing = "3.5.1"
 zxingembedded = "4.3.0"
+okhttp = "4.12.0"
 
 [libraries]
 junit = { group = "junit", name = "junit", version.ref = "junit" }
@@ -22,6 +23,7 @@ constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayo
 androidasync = { group = "com.koushikdutta.async", name = "androidasync", version.ref = "androidasync" }
 zxing-core = { group = "com.google.zxing", name = "core", version.ref = "zxing" }
 zxing-embedded = { group = "com.journeyapps", name = "zxing-android-embedded", version.ref = "zxingembedded" }
+okhttp = { group = "com.squareup.okhttp3", name = "okhttp", version.ref = "okhttp" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

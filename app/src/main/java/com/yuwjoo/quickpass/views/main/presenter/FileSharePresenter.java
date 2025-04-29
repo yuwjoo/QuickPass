@@ -13,12 +13,18 @@ import com.koushikdutta.async.http.Multimap;
 import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
 import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
 import com.yuwjoo.quickpass.httpServer.HttpServer;
+import com.yuwjoo.quickpass.okhttp.OkHttpUtils;
 import com.yuwjoo.quickpass.views.main.view.IFileShareView;
+
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
+
+import okhttp3.Response;
 
 public class FileSharePresenter implements IFileSharePresenter {
     private final String TAG = "FileSharePresenter";
@@ -37,8 +43,18 @@ public class FileSharePresenter implements IFileSharePresenter {
     @Override
     public void addFile(Uri uri) {
         String id = UUID.randomUUID().toString();
+        String link = getShareLink(id);
         shareFileMap.put(id, uri);
-        fileShareView.onAddFileSuccess(getShareLink(id));
+        fileShareView.onAddFileSuccess(link);
+        try {
+            JSONObject data = new JSONObject();
+            data.put("link", link);
+            try(Response response = OkHttpUtils.post("http://localhost:3000", data)){
+                response.body();
+            }
+        } catch (JSONException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     @Override
