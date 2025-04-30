@@ -58,6 +58,13 @@
             android:text="高级文件分享"
             android:padding="16dp" />
 
+        <Button
+            android:id="@+id/searchDeviceBtn"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="16dp"
+            android:text="查找设备" />
+
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

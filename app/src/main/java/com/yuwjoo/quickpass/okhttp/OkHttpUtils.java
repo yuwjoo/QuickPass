@@ -1,9 +1,13 @@
 package com.yuwjoo.quickpass.okhttp;
 
+import androidx.annotation.NonNull;
+
 import org.json.JSONObject;
 
 import java.io.IOException;
 
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.MediaType;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
@@ -27,15 +31,11 @@ public class OkHttpUtils {
      * 发送get请求
      *
      * @param url 请求url
-     * @return 响应
+     * @param callback 请求回调
      */
-    public static Response get(String url) {
+    public static void get(String url, Callback callback) {
         Request request = new Request.Builder().url(url).build();
-        try (Response response = okHttpClient.newCall(request).execute()) {
-            return response;
-        } catch (IOException e) {
-            throw new RuntimeException(e);
-        }
+        okHttpClient.newCall(request).enqueue(callback);
     }
 
     /**

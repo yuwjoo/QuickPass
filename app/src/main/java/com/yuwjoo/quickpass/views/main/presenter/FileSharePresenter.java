@@ -9,6 +9,8 @@ import android.net.Uri;
 import android.util.Log;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
+
 import com.koushikdutta.async.http.Multimap;
 import com.koushikdutta.async.http.server.AsyncHttpServerRequest;
 import com.koushikdutta.async.http.server.AsyncHttpServerResponse;
@@ -19,11 +21,14 @@ import com.yuwjoo.quickpass.views.main.view.IFileShareView;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.UUID;
 
+import okhttp3.Call;
+import okhttp3.Callback;
 import okhttp3.Response;
 
 public class FileSharePresenter implements IFileSharePresenter {
@@ -46,15 +51,27 @@ public class FileSharePresenter implements IFileSharePresenter {
         String link = getShareLink(id);
         shareFileMap.put(id, uri);
         fileShareView.onAddFileSuccess(link);
-        try {
-            JSONObject data = new JSONObject();
-            data.put("link", link);
-            try(Response response = OkHttpUtils.post("http://localhost:3000", data)){
-                response.body();
-            }
-        } catch (JSONException e) {
-            throw new RuntimeException(e);
-        }
+//        try {
+//            JSONObject data = new JSONObject();
+//            data.put("link", link);
+//            OkHttpUtils.get("https://www.baidu.com/", new Callback() {
+//                @Override
+//                public void onFailure(@NonNull Call call, @NonNull IOException e) {
+//                    Log.i(TAG, "失败");
+//                    e.printStackTrace();
+//                }
+//
+//                @Override
+//                public void onResponse(@NonNull Call call, @NonNull Response response) throws IOException {
+//                    Log.i(TAG, "成功");
+//                    if (response.body() != null) {
+//                        Log.i(TAG, response.body().string());
+//                    }
+//                }
+//            });
+//        } catch (JSONException e) {
+//            throw new RuntimeException(e);
+//        }
     }
 
     @Override

@@ -1,26 +1,34 @@
 package com.yuwjoo.quickpass.views.main;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
 import androidx.activity.EdgeToEdge;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.graphics.Insets;
 import androidx.core.view.ViewCompat;
 import androidx.core.view.WindowInsetsCompat;
+
 import com.yuwjoo.quickpass.views.fileShare.FileShareActivity;
 import com.yuwjoo.quickpass.R;
+import com.yuwjoo.quickpass.views.main.presenter.DeviceManagePresenter;
 import com.yuwjoo.quickpass.views.main.presenter.FileSelectorPresenter;
 import com.yuwjoo.quickpass.views.main.presenter.FileSharePresenter;
 import com.yuwjoo.quickpass.views.main.view.IFileShareView;
 
 public class MainActivity extends AppCompatActivity implements IFileShareView {
+    private final String TAG = "MainActivity";
     private EditText shareUrlEditText;
     private FileSelectorPresenter fileSelectorPresenter;
     private FileSharePresenter fileSharePresenter;
+    private DeviceManagePresenter  deviceManagePresenter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,6 +45,19 @@ public class MainActivity extends AppCompatActivity implements IFileShareView {
 
         initView();
         initPresenter();
+
+        new AlertDialog.Builder(this)
+                .setTitle("提示")
+                .setMessage("确定要删除此项吗？")
+                .setPositiveButton("确定", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        // 确定按钮点击事件
+                    }
+                })
+                .setNegativeButton("取消", null)
+                .setNeutralButton("稍后提醒", null)
+                .show();
     }
 
     private void initView() {
@@ -44,15 +65,18 @@ public class MainActivity extends AppCompatActivity implements IFileShareView {
         Button selectFileButton = findViewById(R.id.selectFileButton);
         Button copyButton = findViewById(R.id.copyButton);
         Button openFileShareButton = findViewById(R.id.btnOpenFileShare);
+        Button searchDeviceButton = findViewById(R.id.searchDeviceBtn);
 
         selectFileButton.setOnClickListener(v -> fileSelectorPresenter.openFilePicker());
         copyButton.setOnClickListener(v -> fileSharePresenter.copyShareUrl(shareUrlEditText.getText().toString()));
         openFileShareButton.setOnClickListener(v -> openFileShareActivity());
+        searchDeviceButton.setOnClickListener(v-> deviceManagePresenter.searchAllDevice());
     }
 
     private void initPresenter() {
         fileSelectorPresenter = new FileSelectorPresenter(this); // 文件选择功能
         fileSharePresenter = new FileSharePresenter(this, this); // 文件分享功能
+        deviceManagePresenter = new DeviceManagePresenter(); // 设备管理功能
     }
 
     @Override
@@ -65,6 +89,7 @@ public class MainActivity extends AppCompatActivity implements IFileShareView {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        deviceManagePresenter.destroy();
     }
 
     /**
@@ -78,6 +103,8 @@ public class MainActivity extends AppCompatActivity implements IFileShareView {
 
     @Override
     public void onAddFileSuccess(String link) {
+        Log.i(TAG, "进入");
+        Log.i(TAG, link);
         shareUrlEditText.setText(link);
         Toast.makeText(this, "分享链接已生成", Toast.LENGTH_SHORT).show();
     }
